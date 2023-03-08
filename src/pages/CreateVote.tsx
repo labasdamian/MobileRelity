@@ -26,9 +26,11 @@ export const CreateVote: FunctionComponent = () => {
 				<label>Image Id</label>
 				<input type="text" {...register('imageId', { required: true })}/>
 
-				<label>Vote</label>
-				<input type="number" {...register('value', { required: true })}/>
+				<label>Vote Up</label>
+				<input type="radio" value="1"{...register('value', { required: true })}/>
 
+				<label>Vote Down</label>
+				<input type="radio" value="-1" {...register('value', { required: true })}/>
 				<hr />
 				<div>
 					{errors.imageId && <span>Image id is request field</span>}
