@@ -2,6 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { CreateVote } from "./pages/CreateVote";
+import { ListVotes } from "./pages/ListVotes";
+import { SingleVote } from "./pages/SingleVote";
 
 const router = createBrowserRouter([
   {
@@ -10,20 +14,24 @@ const router = createBrowserRouter([
   },
   {
     path: "/votes",
-    element: <h1> Votes list</h1>
+    element: <ListVotes />
   },
   {
     path: "/votes/:id",
-    element: <h1> Single vote</h1>
+    element: <SingleVote />
   },
   {
     path: "/votes/create",
-    element: <h1> Create vote</h1>
+    element: <CreateVote />
   }
 ]);
 
+const queryClient = new QueryClient()
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>,
 )
